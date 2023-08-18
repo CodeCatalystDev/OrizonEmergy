@@ -1,0 +1,18 @@
+Phone Regex
+
+bool Common_Validation.Phone_Regex(string phnval)
+{
+	phone_regex = "\D*([2-9]\d{2})(\D*)([2-9]\d{2})(\D*)(\d{4})\D*";
+	regexvalue = phnval.matches(phone_regex);
+	return regexvalue;
+}
+
+
+Email Regex
+
+bool Common_Validation.Email_Regex(string emailval)
+{
+	email_regex = "[a-z0-9]+@[a-z]+\.[a-z]{2,3}";
+	regexval = emailval.matches(email_regex);
+	return regexval;
+}
