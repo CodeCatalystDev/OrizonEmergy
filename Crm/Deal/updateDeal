@@ -1,0 +1,75 @@
+// sendmail
+// [
+// 	from :zoho.loginuserid
+// 	to :"nambi.rajan@cloudlion.org"
+// 	subject :"hi"
+// 	message :"hi test "
+// ]
+/*
+function created by Nambi Rajan to update Accounts and Contacts 
+*/
+getDeal = zoho.crm.getRecordById("Deals",DealID);
+info getDeal.get("Account_Name");
+info getDeal.get("Contact_Name");
+if(getDeal.get("Account_Name") != null)
+{
+	info "Account";
+	getAccount = getDeal.get("Account_Name").get("id");
+	info getAccount;
+	updateAccount = Map();
+	name = getDeal.get("First_Name") + " " + getDeal.get("Last_Name") + " " + getDeal.get("Street");
+	info name;
+	updateAccount.put("Account_Name",name);
+	updateAccount.put("AR_Account_Reference_Number1",getDeal.get("AR_Account_Reference_Number"));
+	updateAccount.put("If_setting_for_someone_list_the_closer",getDeal.get("If_setting_for_someone_list_the_closer_OLD"));
+	updateAccount.put("Does_the_client_own_the_property",getDeal.get("Does_the_client_own_the_property"));
+	updateAccount.put("First_Name",getDeal.get("First_Name"));
+	updateAccount.put("Last_Name",getDeal.get("Last_Name"));
+	updateAccount.put("Email",getDeal.get("Email"));
+	updateAccount.put("Phone",getDeal.get("Phone"));
+	updateAccount.put("Does_the_house_show_on_Google_Satellite_view",getDeal.get("Does_the_house_show_on_Google_Satellite_view"));
+	updateAccount.put("Customer_Utility_Line_Provider",getDeal.get("Customer_Utility_Line_Provider"));
+	updateAccount.put("Customer_Utility_Retailer",getDeal.get("Customer_Utility_Retailer"));
+	updateAccount.put("House_Type",getDeal.get("House_Type"));
+	updateAccount.put("Approximate_age_of_home_in_years",getDeal.get("Approximate_age_of_home_in_years"));
+	updateAccount.put("Roof_Type",getDeal.get("Roof_Type"));
+	updateAccount.put("Does_the_customer_have_internet_at_home",getDeal.get("Does_the_customer_have_internet_at_home"));
+	updateAccount.put("Time_for_Return_meeting_with_proposal",getDeal.get("Time_for_Return_meeting_with_proposal"));
+	updateAccount.put("Attic_Access_Available",getDeal.get("Attic_Access_Available"));
+	updateAccount.put("Billing_Street",getDeal.get("Street"));
+	updateAccount.put("Billing_State",getDeal.get("State"));
+	updateAccount.put("Billing_Country",getDeal.get("Country"));
+	updateAccount.put("Billing_City",getDeal.get("City"));
+	updateAccount.put("Billing_Code",getDeal.get("Postal_Code"));
+	updateAccount.put("Customer_Average_Utility_Rate",getDeal.get("Customer_Average_Utility_Rate"));
+	updateAccount.put("Secondary_Client_Name",getDeal.get("Secondary_Client_Name"));
+	//updateAccount.put("Secondary_Email", getDeal.get(""));
+	//updateAccount.put("Scoop_Types_Name", <OBJECT>)
+	updateAccount.put("Fax",getDeal.get("Fax"));
+	updateAccount.put("Annual_Revenue",getDeal.get("Annual_Revenue"));
+	updateAccount.put("Shipping_Street",getDeal.get("Street"));
+	updateAccount.put("Shipping_State",getDeal.get("State"));
+	updateAccount.put("Shipping_Country	",getDeal.get("Country"));
+	updateAccount.put("Shipping_City",getDeal.get("City"));
+	updateAccount.put("Billing_Code",getDeal.get("Postal_Code"));
+	getResponse = zoho.crm.updateRecord("Accounts",getAccount,updateAccount);
+	info getResponse;
+}
+if(getDeal.get("Contact_Name") != null)
+{
+	info "contacts";
+	getContact = getDeal.get("Contact_Name").get("id");
+	info getContact;
+	updateContact = Map();
+	//updateContact.put("", <OBJECT>)
+	updateContact.put("First_Name",getDeal.get("First_Name"));
+	updateContact.put("Last_Name",getDeal.get("Last_Name"));
+	updateContact.put("Email",getDeal.get("Email"));
+	updateContact.put("Phone",getDeal.get("Phone"));
+	updateContact.put("Lead_Source",getDeal.get("Lead_Source"));
+	// // updateContact.put("Account_Name",getClient.Account_ID);
+	updateContact.put("Title",getDeal.get("Title"));
+	updateContact.put("Mobile",getDeal.get("Mobile"));
+	updateContact.put("Fax",getDeal.get("Fax"));
+	getContactsResponse = zoho.crm.updateRecord("Contacts",getContact,updateContact);
+}
